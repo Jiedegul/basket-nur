@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Product from "./product";
-import Basket from "./basket";
+import Basket from "./basket.js";
 
 class App extends Component {
 
@@ -59,7 +59,7 @@ class App extends Component {
         this.setState(({basket})=>{
             const index = basket.findIndex((item)=>item.id===id)
             if (index !== -1){
-                return this.delete(basket,index)
+                return {basket:[...basket.slice(0,index),...basket.slice(index+1)]}
             }
         })
     }
@@ -98,7 +98,7 @@ class App extends Component {
 
                     </div>
                 </div>
-                <Basket deleteProduct={this.deleteProduct} minusProduct={this.minusProduct} plusProduct={this.plusProduct} basket={this.state.basket}/>
+                <Basket deleteProduct={this.deleteProduct}  plusProduct={this.plusProduct} basket={this.state.basket}/>
             </div>
         );
     }
